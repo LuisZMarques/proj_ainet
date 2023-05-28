@@ -1,7 +1,6 @@
 @extends('template.layout')
 
 @section('subtitulo')
-    <p>ImagineShirt</p>
 @endsection
 
 @section('main')

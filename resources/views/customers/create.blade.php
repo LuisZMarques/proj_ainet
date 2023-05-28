@@ -14,19 +14,19 @@
     <form method="POST" action="/Clientes">
         @csrf
         <div>
-            <label for="inputAbr">Abreviatura</label>
-            <input type="text" name="abreviatura" id="inputAbr">
-        </div>
-        <div>
             <label for="inputNome">Nome</label>
             <input type="text" name="nome" id="inputNome">
         </div>
         <div>
+            <label for="inputAbr">Email</label>
+            <input type="text" name="email" id="inputAbr">
+        </div>
+        <div>
             <label for="inputTipo">Tipo de Cliente</label>
             <select name="tipo" id="inputTipo">
-                <option>Licenciatura</option>
-                <option>Mestrado</option>
-                <option>Cliente Técnico Superior Profissional</option>
+                <option>C</option>
+                <option>E</option>
+                <option>A</option>
             </select>
         </div>
         <div>
