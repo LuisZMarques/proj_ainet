@@ -9,7 +9,7 @@ class PriceController extends Controller
 {
     public function index()
     {
-        $prices = Price::all();
+        $prices = Price::all()->first();
         return view('prices.index', compact('prices'));
     }
 }

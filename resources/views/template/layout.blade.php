@@ -87,6 +87,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Catalogo
                         </a>
+                        @if (Auth::check() && Auth::user()->isAdmin())
                         <div class="sb-sidenav-menu-heading">Gestão</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                             data-bs-target="#collapseCurricular" aria-expanded="false"
@@ -99,13 +100,13 @@
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link "
-                                    href="">Categorias</a>
+                                    href="{{ route('categories.index') }}">Categorias</a>
                                 <a class="nav-link "
                                     href="">Imagens de T-Shirts</a>
                                 <a class="nav-link "
-                                    href="">Preços</a>
+                                    href="{{ route('prices.index') }}">Preços</a>
                                 <a class="nav-link "
-                                    href="">Cores</a>
+                                    href="{{ route('colors.index') }}">Cores</a>
                                 <a class="nav-link "
                                     href="{{ route('orders.index') }}">Encomendas</a>
                             </nav>
@@ -124,6 +125,8 @@
                                     href="{{ route('customers.index') }}">Utilizadores</a>
                             </nav>
                         </div>
+                        @endif
+                        @if (Auth::check())
                         <div class="sb-sidenav-menu-heading">Espaço Pessoal</div>
                         <a class="nav-link "
                             href="">
@@ -140,6 +143,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
                             Carrinho
                         </a>
+                        @endif
                     </div>
                 </div>
             </nav>

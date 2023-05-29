@@ -58,4 +58,19 @@ class User extends Authenticatable
             },
         );
     }
+
+    public function isAdmin() : bool
+    {
+        return $this && $this->user_type === 'A';
+    }
+
+    public function isCustomer()
+    {
+        return $this->user_type === 'C'; 
+    }
+
+    public function isEmployee()
+    {
+        return $this->user_type === 'E'; 
+    }
 }

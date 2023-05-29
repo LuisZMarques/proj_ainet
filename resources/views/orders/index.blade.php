@@ -26,5 +26,6 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $orders->withQueryString()->links() }}
     </div>
 @endsection

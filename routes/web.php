@@ -27,3 +27,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/customers', [App\Http\Controllers\CustomerController::class, 'index'])->name('customers.index');
 Route::get('/catalogo', [App\Http\Controllers\TshirtImageController::class, 'index'])->name('tshirt_images.index');
 Route::get('/encomendas', [App\Http\Controllers\OrderController::class, 'index'])->name('orders.index');
+Route::get('/precos', [App\Http\Controllers\PriceController::class, 'index'])->name('prices.index');
+Route::get('/categorias', [App\Http\Controllers\CategoryController::class, 'index'])->name('categories.index');
+Route::get('/cores', [App\Http\Controllers\ColorController::class, 'index'])->name('colors.index');

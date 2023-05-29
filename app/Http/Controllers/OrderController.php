@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Illuminate\Pagination\Paginator;
 
 class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::all();
+        Paginator::useBootstrap();
+        $orders = Order::paginate(15);
         return view('orders.index', compact('orders'));
     }
 
