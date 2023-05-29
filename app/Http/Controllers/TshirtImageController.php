@@ -26,4 +26,15 @@ class TshirtImageController extends Controller
         TshirtImage::create($request->all());
         return redirect('/tshirt_images');
     }
+
+    public function edit(TshirtImage $tshirt_image): View
+    {
+        return view('tshirt_images.edit', compact('tshirt_image'));
+    }
+
+    public function update(Request $request, TshirtImage $tshirt_image): RedirectResponse
+    {
+        $tshirt_image->update($request->all());
+        return redirect('/tshirt_images');
+    }
 }

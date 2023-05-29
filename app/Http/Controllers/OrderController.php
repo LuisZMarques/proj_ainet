@@ -19,12 +19,12 @@ class OrderController extends Controller
 
     public function create(): View
     {
-        return view('cursos.create');
+        return view('orders.create');
     }
 
     public function store(Request $request): RedirectResponse
     {
         Order::create($request->all());
-        return redirect('/tshirt_images');
+        return redirect('/encomendas');
     }
 }

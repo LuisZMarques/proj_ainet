@@ -12,4 +12,15 @@ class PriceController extends Controller
         $prices = Price::all()->first();
         return view('prices.index', compact('prices'));
     }
+
+    public function create()
+    {
+        return view('prices.create');
+    }
+
+    public function store(Request $request)
+    {
+        Price::create($request->all());
+        return redirect('/precos');
+    }
 }

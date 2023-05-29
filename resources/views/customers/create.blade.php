@@ -11,7 +11,7 @@
 
 <body>
     <h2>Novo Cliente</h2>
-    <form method="POST" action="/Clientes">
+    <form method="POST" action="/clientes">
         @csrf
         <div>
             <label for="inputNome">Nome</label>
@@ -22,32 +22,36 @@
             <input type="text" name="email" id="inputAbr">
         </div>
         <div>
-            <label for="inputTipo">Tipo de Cliente</label>
-            <select name="tipo" id="inputTipo">
+            <label for="inputPw">Password</label>
+            <input type="text" name="password" id="inputPw">
+        </div>
+        <div>
+            <label for="inputTipoCliente">Tipo de Cliente</label>
+            <select name="tipoCliente" id="inputTipoCliente">
                 <option>C</option>
                 <option>E</option>
                 <option>A</option>
             </select>
         </div>
         <div>
-            <label for="inputSemestres">Semestres</label>
-            <input type="text" name="semestres" id="inputSemestres">
+            <label for="inputNif">Nif</label>
+            <input type="text" name="nif" id="inputNif">
         </div>
         <div>
-            <label for="inputECTS">ECTS</label>
-            <input type="text" name="ECTS" id="inputECTS">
+            <label for="inputEndereco">Endereço</label>
+            <input type="text" name="endereco" id="inputEndereco">
         </div>
         <div>
-            <label for="inputVagas">Vagas</label>
-            <input type="text" name="vagas" id="inputVagas">
+            <label for="inputTipoPagamento">Tipo Pagamento</label>
+            <select name="tipoPagamento" id="inputTipoPagamento">
+                <option>MBWAY</option>
+                <option>X</option>
+                <option>Y</option>
+            </select>
         </div>
         <div>
-            <label for="inputContato">Contato</label>
-            <input type="text" name="contato" id="inputContato">
-        </div>
-        <div>
-            <label for="inputObjetivos">Objetivos</label>
-            <textarea name="objetivos" id="inputObjetivos" rows=10></textarea>
+            <label for="inputRefPagamento">Ref. Pagamento</label>
+            <input type="text" name="RefPagamento" id="inputRefPagamento">
         </div>
         <div>
             <button type="submit" name="ok">Guardar novo Cliente</button>
