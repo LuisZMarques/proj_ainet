@@ -4,16 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Color extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = ['name'];
+    protected $primaryKey = 'code';
+    public $incrementing= false;
+    protected $keyType = 'string';
+    protected $fillable = ['code', 'name'];
 
-    public function orderItems(): HasMany
+    public function orderItems(): BelongsToMany
     {
-        return $this->hasMany(OrderItem::class, 'order_item_fk_color_code');
+        return $this->BelongsToMany(OrderItem::class, 'order_item_fk_color_code');
     }
 }

@@ -22,6 +22,9 @@
                         <td>{{ $order->customer_id}}</td>
                         <td>{{ $order->date }}</td>
                         <td>{{ $order->total_price }}</td>
+                        <td>
+                            <a href="/encomendas/{{$order->id}}/edit">Alterar</a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

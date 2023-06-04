@@ -22,9 +22,20 @@ class OrderController extends Controller
         return view('orders.create');
     }
 
+    public function edit(Order $order): View
+    {
+        return view('orders.edit')->withOrder($order);
+    }
+
+    public function update(Request $request, Order $order): RedirectResponse
+    {
+        $order->update($request->all());
+        return redirect()->route('orders.index');
+    }
+
     public function store(Request $request): RedirectResponse
     {
         Order::create($request->all());
-        return redirect('/encomendas');
+        return redirect()->route('orders.index');
     }
 }
