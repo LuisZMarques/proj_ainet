@@ -38,4 +38,17 @@ class OrderController extends Controller
         Order::create($request->all());
         return redirect()->route('orders.index');
     }
+
+    public function minhasEncomendas(Request $request): View
+    {
+        $encomendas = $request->user()->customer->encomendas;
+  /*       $tipo = 'O';
+        if ($request->user()) {
+            $tipo = $request->user()->tipo ?? 'O';
+        }
+        if ($tipo == 'C') {
+            $encomendas = $request->user()->customer->encomendas;
+        }  */
+        return view('encomendas.minhas', compact('encomendas', 'tipo'));
+    }
 }

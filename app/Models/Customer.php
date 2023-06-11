@@ -12,7 +12,7 @@ class Customer extends Model
     use HasFactory;
 
     public $timestamps = false;
-    protected $fillable = ['user_id', 'nif', 'address', 'default_payment_type', 'default_payment_ref'];
+    protected $fillable = ['id', 'nif', 'address', 'default_payment_type', 'default_payment_ref'];
 
     public function user(): BelongsTo
     {

@@ -13,7 +13,8 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        $customers = Customer::all();
+        $customerQuery = Customer::query();
+        $customers = $customerQuery->with('user')->paginate(10);
         return view('customers.index', compact('customers'));
     }
 

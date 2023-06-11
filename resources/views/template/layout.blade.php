@@ -129,7 +129,7 @@
                         @if (Auth::check())
                         <div class="sb-sidenav-menu-heading">Espaço Pessoal</div>
                         <a class="nav-link "
-                            href="">
+                            href="{{ route('encomendas.minhas') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-file-text"></i></div>
                             Minhas encomendas
                         </a>
@@ -151,12 +151,6 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    @if (session('alert-msg'))
-                        @include('shared.messages')
-                    @endif
-                    @if ($errors->any())
-                        @include('shared.alertValidation')
-                    @endif
                     <h1 class="mt-4">@yield('titulo', 'Imagine Shirt')</h1>
                     @yield('subtitulo')
                     <div class="mt-4">

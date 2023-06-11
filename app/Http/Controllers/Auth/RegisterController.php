@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Customer;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -53,6 +55,10 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'nif' => ['required', 'string', 'max:9', 'unique:customers'],
+            'endereco' => ['required', 'string', 'max:255'],
+            'tipoPagamento' => ['required', 'string', 'max:255'],
+            'RefPagamento' => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -64,10 +70,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        return DB::transaction(function () use ($data) {
+            $newUser = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'user_type' => 'C',
+                'blocked' => 0,
+            ]); 
+            Customer::create([
+                'nif' => $data['nif'],
+                'address' => $data['endereco'],
+                'default_payment_type' => $data['tipoPagamento'],
+                'default_payment_ref' => $data['RefPagamento'],
+                'id' => $newUser->id,
+            ]);
+            return $newUser;
+        });
     }
 }

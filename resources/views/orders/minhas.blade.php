@@ -9,18 +9,16 @@
                 <tr>
                     <th>ID</th>
                     <th>Status</th>
-                    <th>Cliente ID</th>
                     <th>Data</th>
                     <th>Preço</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($orders as $order)
+                @foreach ($customer->orders as $order)
                     <tr>
                         <td>{{ $order->id }}</td>
                         <td>{{ $order->status }}</td>
-                        <td>{{ $order->customer_id }}</td>
                         <td>{{ $order->date }}</td>
                         <td>{{ $order->total_price }}</td>
                         <td>
@@ -30,6 +28,5 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $orders->withQueryString()->links() }}
     </div>
 @endsection
