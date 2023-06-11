@@ -1,26 +1,39 @@
 @extends('template.layout')
 
-@section('titulo', 'Catalogo de T-Shirts')
+@section('titulo', 'Lista de Imagens de T-Shirt')
 
 @section('main')
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    @foreach($tshirt_images as $tshirt_image)
-                        <div class="col-md-4">
-                            <div class="card mb-4">
-                                <img src="{{ $tshirt_image->image_path }}" class="card-img-top" alt="T-Shirt Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $tshirt_image->name }}</h5>
-                                    <p class="card-text">{{ $tshirt_image->description }}</p>
-                                    <a href="#" class="btn btn-primary">Add to Cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
+        <h2 class="text-center">Lista de Imagens de T-Shirt</h2>
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Categoria</th>
+                    <th>Nome</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($tshirtImages as $tshirtImage)
+                    <tr>
+                        <td>{{ $tshirtImage->id }}</td>
+                        <td>{{ $tshirtImage->customer_id ? $tshirtImage->customer->name : 'Catálogo da Loja' }}</td>
+                        <td>{{ $tshirtImage->category_id ? $tshirtImage->category->name : 'Nenhuma' }}</td>
+                        <td>{{ $tshirtImage->name }}</td>
+                        <td>
+                            <a href="{{ route('tshirt_images.show', $tshirtImage->id) }}" class="btn btn-primary btn-sm">Detalhes</a>
+                            <a href="{{ route('tshirt_images.edit', $tshirtImage->id) }}" class="btn btn-secondary btn-sm">Editar</a>
+                            <form method="POST" action="{{ route('tshirt_images.destroy', $tshirtImage->id) }}" style="display: inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esta imagem de T-Shirt?')">Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 @endsection

@@ -1,17 +1,18 @@
 @extends('template.layout')
 
-@section('titulo', 'Encomendas')
+@section('titulo', 'Lista de Encomendas')
 
 @section('main')
-    <div class="container">
-        <table class="table table-dark table-bordered text-center">
+    <h2>Lista de Encomendas</h2>
+    <div class="table-responsive">
+        <table class="table table-dark text-center">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Status</th>
-                    <th>Cliente ID</th>
+                    <th>Cliente</th>
                     <th>Data</th>
-                    <th>Preço</th>
+                    <th>Preço Total</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -20,16 +21,16 @@
                     <tr>
                         <td>{{ $order->id }}</td>
                         <td>{{ $order->status }}</td>
-                        <td>{{ $order->customer_id }}</td>
+                        <td>{{ $order->customer->name }}</td>
                         <td>{{ $order->date }}</td>
                         <td>{{ $order->total_price }}</td>
                         <td>
-                            <a href="/encomendas/{{ $order->id }}/edit" class="btn btn-primary">Alterar</a>
+                            <a href="{{ route('orders.show', $order->id) }}">Ver</a>
+                            <a href="{{ route('orders.edit', $order->id) }}">Editar</a>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-        {{ $orders->withQueryString()->links() }}
     </div>
 @endsection

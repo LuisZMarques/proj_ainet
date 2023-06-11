@@ -21,4 +21,6 @@ class Order extends Model
     {
         return $this->belongsTo(Customer::class,'orders_fk_customers_id', 'customer_id');
     }
+
+    
 }
