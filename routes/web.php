@@ -20,6 +20,7 @@ Route::get('/encomendas/criar', [OrderController::class, 'create'])->name('order
 Route::get('/encomendas/{order}/editar', [OrderController::class, 'edit'])->name('orders.edit');
 Route::get('/encomendas/minhas', [OrderController::class, 'minhasEncomendas'])
 ->name('encomendas.minhas');
+Route::get('/encomendas/{order}', [OrderController::class, 'show'])->name('orders.show');
 
 Route::post('/encomendas', [OrderController::class, 'store'])->name('orders.store');
 Route::put('/encomendas/{order}', [OrderController::class, 'update'])->name('orders.update');
@@ -61,6 +62,7 @@ Route::delete('/precos/{price}', [PriceController::class, 'destroy'])->name('pri
 Route::get('/categorias', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categorias/criar', [CategoryController::class, 'create'])->name('categories.create');
 Route::get('/categorias/{category}/editar', [CategoryController::class, 'edit'])->name('categories.edit');
+Route::get('/categorias/{category}', [CategoryController::class, 'show'])->name('categories.show');
 
 Route::post('/categorias', [CategoryController::class, 'store'])->name('categories.store');
 Route::put('/categorias/{category}', [CategoryController::class, 'update'])->name('categories.update');
@@ -70,7 +72,8 @@ Route::delete('/categorias/{category}', [CategoryController::class, 'destroy'])-
 
 Route::get('/cores', [ColorController::class, 'index'])->name('colors.index');
 Route::get('/cores/criar', [ColorController::class, 'create'])->name('colors.create');
-Route::get('/cores/{color}/editar', [ColorController::class, 'edit'])->name('colors.edit');
+Route::get('/cores/{code}/editar', [ColorController::class, 'edit'])->name('colors.edit');
+Route::get('/cores/{code}', [ColorController::class, 'show'])->name('colors.show');
 
 Route::post('/cores', [ColorController::class, 'store'])->name('colors.store');
 Route::put('/cores/{color}', [ColorController::class, 'update'])->name('colors.update');
@@ -81,6 +84,7 @@ Route::delete('/cores/{color}', [ColorController::class, 'destroy'])->name('colo
 Route::get('/orderItems', [OrderItemController::class, 'index'])->name('orderItems.index');
 Route::get('/orderItems/criar', [OrderItemController::class, 'create'])->name('orderItems.create');
 Route::get('/orderItems/{orderItem}/editar', [OrderItemController::class, 'edit'])->name('orderItems.edit');
+Route::get('/orderItems/{orderItem}', [OrderItemController::class, 'show'])->name('orderItems.show');
 
 Route::post('/orderItems', [OrderItemController::class, 'store'])->name('orderItems.store');
 Route::put('/orderItems/{orderItem}', [OrderItemController::class, 'update'])->name('orderItems.update');

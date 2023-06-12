@@ -7,7 +7,7 @@
     <form method="POST" action="{{ route('customers.update', $customer->id) }}">
         @csrf
         @method('PUT')
-        @include('shared.fields')
+        @include('customers.shared.fields')
 
         <div>
             <button type="submit" name="ok">Guardar</button>

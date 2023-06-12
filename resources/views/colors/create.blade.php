@@ -7,7 +7,7 @@
         <h2 class="text-center">Criar Nova Cor</h2>
         <form method="POST" action="{{ route('colors.store') }}">
             @csrf
-            @include('shared.fields')
+            @include('colors.shared.fields')
 
             <div>
                 <button type="submit" name="ok" class="btn btn-primary">Guardar Cor</button>

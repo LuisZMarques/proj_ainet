@@ -8,7 +8,7 @@
         <form method="POST" action="{{ route('orders.update', $order->id) }}">
             @csrf
             @method('PUT')
-            @include('shared.fields')
+            @include('orders.shared.fields')
             <div>
                 <button type="submit" name="ok">Guardar Encomenda</button>
             </div>

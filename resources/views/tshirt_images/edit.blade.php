@@ -8,7 +8,7 @@
         <form method="POST" action="{{ route('tshirt_images.update', $tshirtImage->id) }}">
             @csrf
             @method('PUT')
-            @include('shared.fields')
+            @include('tshirt_images.shared.fields')
 
             <div>
                 <button type="submit" name="ok" class="btn btn-primary">Guardar Alterações</button>

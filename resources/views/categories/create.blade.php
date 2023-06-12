@@ -4,10 +4,9 @@
 
 @section('main')
     <div class="container">
-        <h2 class="text-center">Criar Nova Categoria</h2>
         <form method="POST" action="{{ route('categories.store') }}">
             @csrf
-            @include('shared.fields')
+            @include('categories.shared.fields')
 
             <div>
                 <button type="submit" name="ok" class="btn btn-primary">Guardar Categoria</button>

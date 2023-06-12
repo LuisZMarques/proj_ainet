@@ -8,7 +8,7 @@
         <form method="POST" action="{{ route('colors.update', $color->id) }}">
             @csrf
             @method('PUT')
-            @include('shared.fields')
+            @include('colors.shared.fields')
 
             <div>
                 <button type="submit" name="ok" class="btn btn-primary">Guardar Alterações</button>

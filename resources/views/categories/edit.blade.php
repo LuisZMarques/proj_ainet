@@ -4,11 +4,10 @@
 
 @section('main')
     <div class="container">
-        <h2 class="text-center">Editar Categoria</h2>
         <form method="POST" action="{{ route('categories.update', $category->id) }}">
             @csrf
             @method('PUT')
-            @include('shared.fields')
+            @include('categories.shared.fields')
 
             <div>
                 <button type="submit" name="ok" class="btn btn-primary">Guardar Alterações</button>

@@ -4,7 +4,6 @@
 
 @section('main')
     <div class="container">
-        <h2 class="text-center">Lista de Categorias</h2>
         <a href="{{ route('categories.create') }}" class="btn btn-primary mb-3">Nova Categoria</a>
         <table class="table table-dark text-center">
             <thead>

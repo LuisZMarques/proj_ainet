@@ -7,7 +7,7 @@
         <h2 class="text-center">Criar Nova Imagem de T-Shirt</h2>
         <form method="POST" action="{{ route('tshirt_images.store') }}">
             @csrf
-            @include('shared.fields')
+            @include('tshirt_images.shared.fields')
 
             <div>
                 <button type="submit" name="ok" class="btn btn-primary">Guardar Imagem de T-Shirt</button>

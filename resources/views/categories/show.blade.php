@@ -4,7 +4,6 @@
 
 @section('main')
     <div class="container">
-        <h2 class="text-center">Detalhes da Categoria</h2>
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Detalhes</h5>
