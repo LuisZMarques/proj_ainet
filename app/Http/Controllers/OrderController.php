@@ -12,7 +12,6 @@ class OrderController extends Controller
 {
     public function index()
     {
-        Paginator::useBootstrap();
         $orders = Order::paginate(15);
         return view('orders.index', compact('orders'));
     }

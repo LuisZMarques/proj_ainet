@@ -7,13 +7,11 @@ use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
-use Illuminate\Pagination\Paginator;
 
 class CustomerController extends Controller
 {
     public function index()
     {
-        Paginator::useBootstrap();
         $customers = Customer::paginate(15);
         return view('customers.index', compact('customers'));
     }

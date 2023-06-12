@@ -12,7 +12,7 @@ class TshirtImageController extends Controller
 {
     public function index() : View
     {
-        $tshirtImages = TshirtImage::all();
+        $tshirtImages = TshirtImage::paginate(15);
         return view('tshirt_images.index', compact('tshirtImages'));
     }
 
