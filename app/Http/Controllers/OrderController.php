@@ -41,14 +41,9 @@ class OrderController extends Controller
 
     public function minhasEncomendas(Request $request): View
     {
-        $encomendas = $request->user()->customer->encomendas;
-  /*       $tipo = 'O';
-        if ($request->user()) {
-            $tipo = $request->user()->tipo ?? 'O';
-        }
-        if ($tipo == 'C') {
-            $encomendas = $request->user()->customer->encomendas;
-        }  */
-        return view('encomendas.minhas', compact('encomendas', 'tipo'));
+        $customer = $request->user()->customer;
+        $encomendas = $customer->orders;
+
+        return view('orders.minhas', compact('encomendas', 'customer'));
     }
 }

@@ -1,6 +1,6 @@
 @extends('template.layout')
 
-@section('titulo', 'Encomendas')
+@section('titulo', 'Encomendas do Cliente ' . $customer->user->name)
 
 @section('main')
     <div class="container">

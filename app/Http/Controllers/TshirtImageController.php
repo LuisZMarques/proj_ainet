@@ -43,4 +43,12 @@ class TshirtImageController extends Controller
         $tshirt_image->update($request->all());
         return redirect('/tshirt_images');
     }
+
+    public function minhasTshirtImages(Request $request): View
+    {
+        $customer = $request->user()->customer;
+        $tshirtImages = $customer->tshirt_images;
+
+        return view('tshirt_images.minhas', compact('tshirtImages', 'customer'));
+    }
 }

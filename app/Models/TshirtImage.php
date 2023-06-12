@@ -22,7 +22,7 @@ class TshirtImage extends Model
 
     public function orderItems(): HasMany
     {
-        return $this->hasMany(OrderItem::class, 'order_items_fk_tshirt_images_id', 'order_items_id');
+        return $this->hasMany(OrderItem::class,'id');
     }
 
     public function category(): BelongsTo

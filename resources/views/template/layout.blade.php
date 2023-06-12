@@ -134,7 +134,7 @@
                             Minhas encomendas
                         </a>
                         <a class="nav-link"
-                            href="">
+                            href="{{ route('tshirt_images.minhas') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-image"></i></div>
                             Minhas Imagens
                         </a>

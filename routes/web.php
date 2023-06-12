@@ -18,8 +18,7 @@ Auth::routes(['verify' => true]);
 Route::get('/encomendas', [OrderController::class, 'index'])->name('orders.index');
 Route::get('/encomendas/criar', [OrderController::class, 'create'])->name('orders.create');
 Route::get('/encomendas/{order}/editar', [OrderController::class, 'edit'])->name('orders.edit');
-Route::get('/encomendas/minhas', [OrderController::class, 'minhasEncomendas'])
-->name('encomendas.minhas');
+Route::get('/encomendas/minhas', [OrderController::class, 'minhasEncomendas'])->name('encomendas.minhas');
 Route::get('/encomendas/{order}', [OrderController::class, 'show'])->name('orders.show');
 
 Route::post('/encomendas', [OrderController::class, 'store'])->name('orders.store');
@@ -42,6 +41,7 @@ Route::get('/tshirt_images', [TshirtImageController::class, 'index'])->name('tsh
 Route::get('/tshirt_images/criar', [TshirtImageController::class, 'create'])->name('tshirt_images.create');
 Route::get('/tshirt_images/{tshirtImage}/editar', [TshirtImageController::class, 'edit'])->name('tshirt_images.edit');
 Route::get('/tshirt_images/{tshirtImage}', [TshirtImageController::class, 'show'])->name('tshirt_images.show');
+Route::get('/tshirt_images/m/minhas', [TshirtImageController::class, 'minhasTshirtImages'])->name('tshirt_images.minhas');
 
 Route::post('/tshirt_images', [TshirtImageController::class, 'store'])->name('tshirt_images.store');
 Route::put('/tshirt_images/{tshirtImage}', [TshirtImageController::class, 'update'])->name('tshirt_images.update');
