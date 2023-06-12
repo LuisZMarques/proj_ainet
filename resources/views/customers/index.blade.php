@@ -17,7 +17,7 @@
         <tbody>
             @foreach ($customers as $customer)
             <tr>
-                <td>{{ $customer->name }}</td>
+                <td>{{ $customer->user->name }}</td>
                 <td>{{ $customer->email }}</td>
                 <td>{{ $customer->nif }}</td>
                 <td>
