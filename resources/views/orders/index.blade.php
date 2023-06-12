@@ -21,7 +21,7 @@
                     <tr>
                         <td>{{ $order->id }}</td>
                         <td>{{ $order->status }}</td>
-                        <td>{{ $order->customer->name }}</td>
+                        <td>{{ $order->customer->user->name }}</td>
                         <td>{{ $order->date }}</td>
                         <td>{{ $order->total_price }}</td>
                         <td>

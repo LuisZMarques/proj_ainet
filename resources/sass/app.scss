@@ -10,6 +10,10 @@
 // SBAdmin Template
 @import 'sb-admin';
 
+body {
+    background-color: rgb(90, 90, 90);
+}
+
 table th.button-icon-col, table td.button-icon-col {
     max-width: 52px;
     width: 52px;

@@ -12,8 +12,14 @@ class TshirtImageController extends Controller
 {
     public function index() : View
     {
-        $tshirt_images = TshirtImage::all();
-        return view('tshirt_images.index', compact('tshirt_images'));
+        $tshirtImages = TshirtImage::all();
+        return view('tshirt_images.index', compact('tshirtImages'));
+    }
+
+    public function catalogo() : View
+    {
+        $tshirtImages = TshirtImage::all();
+        return view('tshirt_images.catalogo', compact('tshirtImages'));
     }
 
     public function create(): View

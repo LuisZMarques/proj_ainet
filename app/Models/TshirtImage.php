@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongTo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class TshirtImage extends Model
 {
@@ -26,6 +27,6 @@ class TshirtImage extends Model
 
     public function category(): BelongsTo
     {
-        return $this->belongsToMany(Category::class, 'tshirt_images_fk_category_id' ,'category_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 }

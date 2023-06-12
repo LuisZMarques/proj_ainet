@@ -83,7 +83,7 @@
                             Dashboard
                         </a>
                         <a class="nav-link"
-                            href="{{ route('tshirt_images.index') }}">
+                            href="{{ route('tshirt_images.catalogo') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Catalogo
                         </a>
@@ -102,7 +102,7 @@
                                 <a class="nav-link "
                                     href="{{ route('categories.index') }}">Categorias</a>
                                 <a class="nav-link "
-                                    href="">Imagens de T-Shirts</a>
+                                    href="{{ route('tshirt_images.index') }}">Imagens de T-Shirts</a>
                                 <a class="nav-link "
                                     href="{{ route('prices.index') }}">Preços</a>
                                 <a class="nav-link "
@@ -122,7 +122,7 @@
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link "
-                                    href="{{ route('customers.index') }}">Utilizadores</a>
+                                    href="{{ route('customers.index') }}">Clientes</a>
                             </nav>
                         </div>
                         @endif

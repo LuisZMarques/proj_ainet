@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongTo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Order extends Model
 {
@@ -17,9 +17,9 @@ class Order extends Model
         return $this->hasMany(orderItem::class, 'order_id');
     }
 
-    public function customer(): BelongTo
+    public function customer(): BelongsTo
     {
-        return $this->belongsTo(Customer::class,'orders_fk_customers_id', 'customer_id');
+        return $this->belongsTo(Customer::class, 'customer_id');
     }
 
     

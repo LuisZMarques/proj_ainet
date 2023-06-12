@@ -13,8 +13,8 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        $customerQuery = Customer::query();
-        $customers = $customerQuery->with('user')->paginate(10);
+        Paginator::useBootstrap();
+        $customers = Customer::paginate(15);
         return view('customers.index', compact('customers'));
     }
 

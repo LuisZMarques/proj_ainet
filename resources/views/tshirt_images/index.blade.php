@@ -19,7 +19,6 @@
                 @foreach ($tshirtImages as $tshirtImage)
                     <tr>
                         <td>{{ $tshirtImage->id }}</td>
-                        <td>{{ $tshirtImage->customer_id ? $tshirtImage->customer->name : 'Catálogo da Loja' }}</td>
                         <td>{{ $tshirtImage->category_id ? $tshirtImage->category->name : 'Nenhuma' }}</td>
                         <td>{{ $tshirtImage->name }}</td>
                         <td>

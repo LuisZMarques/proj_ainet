@@ -36,9 +36,11 @@ Route::put('/clientes/{customer}', [CustomerController::class, 'update'])->name(
 Route::delete('/clientes/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
 
 //Imagens Tshirt
+Route::get('/catalogo', [TshirtImageController::class, 'catalogo'])->name('tshirt_images.catalogo');
 Route::get('/tshirt_images', [TshirtImageController::class, 'index'])->name('tshirt_images.index');
 Route::get('/tshirt_images/criar', [TshirtImageController::class, 'create'])->name('tshirt_images.create');
 Route::get('/tshirt_images/{tshirtImage}/editar', [TshirtImageController::class, 'edit'])->name('tshirt_images.edit');
+Route::get('/tshirt_images/{tshirtImage}', [TshirtImageController::class, 'show'])->name('tshirt_images.show');
 
 Route::post('/tshirt_images', [TshirtImageController::class, 'store'])->name('tshirt_images.store');
 Route::put('/tshirt_images/{tshirtImage}', [TshirtImageController::class, 'update'])->name('tshirt_images.update');

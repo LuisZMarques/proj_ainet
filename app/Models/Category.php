@@ -14,6 +14,6 @@ class Category extends Model
 
     public function tshirtImages(): HasMany
     {
-        return $this->hasMany(TshirtImage::class, 'tshirt_images_fk_category_id' ,'tshirt_images_id');
+        return $this->hasMany(TshirtImage::class, 'id');
     }
 }

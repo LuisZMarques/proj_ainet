@@ -9,8 +9,8 @@ class PriceController extends Controller
 {
     public function index()
     {
-        $prices = Price::all()->first();
-        return view('prices.index', compact('prices'));
+        $price = Price::all()->first();
+        return view('prices.show', compact('price'));
     }
 
     public function create()
