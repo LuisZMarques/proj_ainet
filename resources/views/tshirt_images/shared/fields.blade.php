@@ -30,3 +30,4 @@
 
 <div class="mb-3">
     <label for="image_url" class="form-label">URL da Imagem:</label>
+</div>

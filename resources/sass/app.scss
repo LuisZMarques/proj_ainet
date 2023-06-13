@@ -11,7 +11,7 @@
 @import 'sb-admin';
 
 body {
-    background-color: rgb(90, 90, 90);
+    background-color: rgb(125, 125, 125);
 }
 
 table th.button-icon-col, table td.button-icon-col {
@@ -57,10 +57,4 @@ textarea.form-control.height-lg{
 
 textarea.form-control.height-xl{
     height: 17.0rem !important;
-}
-
-.pagination-container {
-    display: block;
-    text-align: center;
-    margin-top: 10px; /* Adjust the margin as needed */
 }

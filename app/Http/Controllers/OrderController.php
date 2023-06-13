@@ -10,11 +10,29 @@ use Illuminate\Pagination\Paginator;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request) : View
     {
-        $orders = Order::paginate(15);
+        $query = Order::query();
+
+        // Filtro de estado
+        $status = $request->input('status');
+        if ($status) {
+            $query->where('status', $status);
+        }
+
+        // Filtro de pesquisa por nome do cliente
+        $search = $request->input('search');
+        if ($search) {
+            $query->whereHas('customer.user', function ($q) use ($search) {
+                $q->where('name', 'LIKE', '%' . $search . '%');
+            });
+        }
+
+        $orders = $query->paginate(15);
+
         return view('orders.index', compact('orders'));
     }
+    
 
     public function create(): View
     {

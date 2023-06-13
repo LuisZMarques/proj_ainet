@@ -5,12 +5,22 @@
 @section('main')
     <div class="row justify-content-center">
         <div class="col-12 col-lg-8">
+            <form action="{{ route('tshirt_images.index') }}" method="GET" class="search-bar mb-3 d-flex">
+                <select id="status-select" class="form-control" style="width:10%" name="category">
+                    <option value="">Todas as Categorias</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
+                </select>
+                <input type="text" id="search-input" placeholder="Procura por Nome" class="form-control" name="search">
+                <button type="submit" class="btn btn-primary">Filtrar</button>
+            </form>
             <div class="table-responsive">
                 <table class="table table-dark table-striped" style="background-color: #f1f1f1;">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Cliente</th>
                             <th>Categoria</th>
                             <th>Nome</th>
                             <th>Ações</th>
@@ -19,7 +29,6 @@
                     <tbody>
                         @foreach ($tshirtImages as $tshirtImage)
                             <tr>
-                                <td>{{ $tshirtImage->id }}</td>
                                 <td>{{ $tshirtImage->category_id ? $tshirtImage->category->name : 'Nenhuma' }}</td>
                                 <td>{{ $tshirtImage->name }}</td>
                                 <td>

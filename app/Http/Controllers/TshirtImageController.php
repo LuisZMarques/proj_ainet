@@ -4,16 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TshirtImage;
+use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
 
 class TshirtImageController extends Controller
 {
-    public function index() : View
+    public function index(Request $request) : View
     {
-        $tshirtImages = TshirtImage::paginate(15);
-        return view('tshirt_images.index', compact('tshirtImages'));
+        $query = TshirtImage::query();
+        $category = $request->input('category');
+        $search = $request->input('search');
+
+        if ($category) {
+            $query->where('category_id', $category);
+        }
+
+        if ($search) {
+            $query->where('name', 'LIKE', '%' . $search . '%');
+        }
+
+        $tshirtImages = $query->paginate(15);
+        $categories = Category::all();
+
+        return view('tshirt_images.index', compact('tshirtImages', 'categories'));
     }
 
     public function catalogo() : View

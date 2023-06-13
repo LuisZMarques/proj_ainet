@@ -10,9 +10,17 @@ use Illuminate\View\View;
 
 class CustomerController extends Controller
 {
-    public function index()
+    public function index(Request $request) : View
     {
-        $customers = Customer::paginate(15);
+        $query = Customer::query();
+        $search = $request->input('search');
+        if ($search) {
+            $query->whereHas('user', function ($q) use ($search) {
+                $q->where('name', 'LIKE', '%' . $search . '%');
+            });
+        }
+        $customers = $query->paginate(15);
+
         return view('customers.index', compact('customers'));
     }
 
