@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class TshirtImage extends Model
 {
@@ -17,7 +17,7 @@ class TshirtImage extends Model
 
     public function customer(): BelongsTo
     {
-        return $this->belongsTo(Customer::class, 'customers_id');
+        return $this->belongsTo(Customer::class, 'customer_id');
     }
 
     public function orderItems(): HasMany
@@ -28,5 +28,21 @@ class TshirtImage extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    protected function fullPhotoUrl(): Attribute
+    {
+        if($this->customer()){
+            return Attribute::make(
+                get: function () {
+                    return $this->image_url ? asset('/storage/tshirt_images_own/'. $this->image_url) : asset('/img/plain_white.png');
+                },
+            );
+        }
+        return Attribute::make(
+            get: function () {
+                return $this->image_url ? asset('/storage/tshirt_images/'. $this->image_url) : asset('/img/plain_white.png');
+            },
+        );
     }
 }

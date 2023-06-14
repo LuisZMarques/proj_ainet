@@ -9,6 +9,7 @@
                 <select id="status-select" class="form-control" style="width:10%" name="status">
                     <option value="">Todos os Estados</option>
                     <option value="pending">Pendente</option>
+                    <option value="paid">Paga</option>
                     <option value="closed">Fechada</option>
                     <option value="canceled">Anulada</option>
                 </select>

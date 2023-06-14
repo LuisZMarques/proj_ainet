@@ -3,24 +3,16 @@
 @section('titulo', 'Detalhes da Categoria')
 
 @section('main')
-    <div class="container">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Detalhes</h5>
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th>ID:</th>
-                            <td>{{ $category->id }}</td>
-                        </tr>
-                        <tr>
-                            <th>Nome:</th>
-                            <td>{{ $category->name }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <a href="{{ route('categories.index') }}" class="btn btn-secondary">Voltar</a>
-            </div>
+    <div>
+        @include('categories.shared.fields', ['readonlyData' => true])
+    </div>
+    <div class="d-flex justify-content-between">
+        <div class="d-flex">
+            <a href="{{ route('categories.index') }}" class="btn btn-secondary">Voltar</a>
+        </div>
+        <div class="d-flex">
+            <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-primary">Editar</a>
+            <a href="{{ route('categories.destroy', $category->id) }}" class="btn btn-danger">Eliminar</a>
         </div>
     </div>
 @endsection

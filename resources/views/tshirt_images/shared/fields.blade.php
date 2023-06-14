@@ -1,16 +1,11 @@
 <div class="mb-3">
-    <label for="customer_id" class="form-label">Cliente:</label>
-    <select class="form-select" id="customer_id" name="customer_id">
-        <option value="">Catálogo da Loja</option>
-        @foreach ($customers as $customer)
-            <option value="{{ $customer->id }}">{{ $customer->name }}</option>
-        @endforeach
-    </select>
+    <label for="customer_id" class="form-label">Cliente id:</label>
+    <input type="text" class="form-control" id="customer_id" name="customer_id" @unless(Auth::user()->isAdmin()) disabled @endunless>
 </div>
 
 <div class="mb-3">
     <label for="category_id" class="form-label">Categoria:</label>
-    <select class="form-select" id="category_id" name="category_id">
+    <select class="form-select" id="category_id" name="category_id" @if(Auth::user()->isAdmin()) disabled @endif>
         <option value="">Nenhuma</option>
         @foreach ($categories as $category)
             <option value="{{ $category->id }}">{{ $category->name }}</option>

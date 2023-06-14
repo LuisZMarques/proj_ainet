@@ -10,7 +10,7 @@
                     @foreach($tshirtImages as $tshirtImage)
                         <div class="col-md-4">
                             <div class="card mb-4">
-                                <img src="{{ $tshirtImage->image_path }}" class="card-img-top" alt="T-Shirt Image">
+                                <img src="{{ asset('storage/tshirt_images/' . $tshirtImage->image_url) }}" class="card-img-top" alt="T-Shirt Image" style="width: 150px; height: 150px;">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $tshirtImage->name }}</h5>
                                     <p class="card-text">{{ $tshirtImage->description }}</p>

@@ -64,15 +64,15 @@ class User extends Authenticatable
 
     public function isAdmin() : bool
     {
-        return $this && $this->user_type === 'A';
+        return $this->user_type === 'A';
     }
 
-    public function isCustomer()
+    public function isCustomer() : bool
     {
         return $this->user_type === 'C'; 
     }
 
-    public function isEmployee()
+    public function isEmployee() : bool
     {
         return $this->user_type === 'E'; 
     }

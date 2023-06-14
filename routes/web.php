@@ -39,7 +39,7 @@ Route::delete('/clientes/{customer}', [CustomerController::class, 'destroy'])->n
 Route::get('/catalogo', [TshirtImageController::class, 'catalogo'])->name('tshirt_images.catalogo');
 Route::get('/tshirt_images', [TshirtImageController::class, 'index'])->name('tshirt_images.index');
 Route::get('/tshirt_images/criar', [TshirtImageController::class, 'create'])->name('tshirt_images.create');
-Route::get('/tshirt_images/{tshirtImage}/editar', [TshirtImageController::class, 'edit'])->name('tshirt_images.edit');
+Route::get('/tshirt_images/{tshirtImage}/editar', [TshirtImageController::class, 'update'])->name('tshirt_images.edit');
 Route::get('/tshirt_images/{tshirtImage}', [TshirtImageController::class, 'show'])->name('tshirt_images.show');
 Route::get('/tshirt_images/m/minhas', [TshirtImageController::class, 'minhasTshirtImages'])->name('tshirt_images.minhas');
 
@@ -61,7 +61,7 @@ Route::delete('/precos/{price}', [PriceController::class, 'destroy'])->name('pri
 
 Route::get('/categorias', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categorias/criar', [CategoryController::class, 'create'])->name('categories.create');
-Route::get('/categorias/{category}/editar', [CategoryController::class, 'edit'])->name('categories.edit');
+Route::get('/categorias/{category}/editar', [CategoryController::class, 'update'])->name('categories.edit');
 Route::get('/categorias/{category}', [CategoryController::class, 'show'])->name('categories.show');
 
 Route::post('/categorias', [CategoryController::class, 'store'])->name('categories.store');

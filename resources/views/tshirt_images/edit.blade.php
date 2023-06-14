@@ -1,7 +1,6 @@
 @extends('template.layout')
 
 @section('titulo', 'Editar Imagem de T-Shirt')
-    <h2 class="text-center">Editar Imagem de T-Shirt</h2>
     <form method="POST" action="{{ route('tshirt_images.update', $tshirtImage->id) }}">
         @csrf
         @method('PUT')
