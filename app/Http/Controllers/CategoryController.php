@@ -16,21 +16,30 @@ class CategoryController extends Controller
 {
     public function index(Request $request) : View
     {
-        $query = Category::query();
-        $search = $request->input('search');
+        if (Auth::user()->isAdmin()) {
+            $query = Category::query();
+            $search = $request->input('search');
 
-        if ($search) {
-            $query->where('name', 'LIKE', '%' . $search . '%');
+            if ($search) {
+                $query->where('name', 'LIKE', '%' . $search . '%');
+            }
+
+            $categories = $query->paginate(15);
+
+            return view('categories.index', compact('categories'));
+        } else {
+            return view('home')->with('alert-msg', 'Não tem permissões para ver categorias!')->with('alert-type', 'danger');
         }
-
-        $categories = $query->paginate(15);
-
-        return view('categories.index', compact('categories'));
     }
 
     public function create(): View
     {
-        return view('categories.create');
+        if (Auth::user()->isAdmin()) {
+            $category = new Category();
+            return view('categories.create', compact('category'));
+        } else {
+            return view('home')->with('alert-msg', 'Não tem permissões para criar categorias!')->with('alert-type', 'danger');
+        }
     }
 
     public function show(Category $category) : View

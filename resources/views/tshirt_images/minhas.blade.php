@@ -22,7 +22,7 @@
                         <td>{{ $tshirtImage->description }}</td>
                         <td>{{ $tshirtImage->image_url }}</td>
                         <td>
-                            <a href="/tshirt_images/{{ $tshirtImage->id }}/edit" class="btn btn-primary">Editar</a>
+                            <a href="{{ route('tshirt_images.edit', $tshirtImage->id) }}" class="btn btn-primary">Editar</a>
                             <form action="/tshirt_images/{{ $tshirtImage->id }}" method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')

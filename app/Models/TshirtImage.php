@@ -29,20 +29,4 @@ class TshirtImage extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
-
-    protected function fullPhotoUrl(): Attribute
-    {
-        if($this->customer()){
-            return Attribute::make(
-                get: function () {
-                    return $this->image_url ? asset('/storage/tshirt_images_own/'. $this->image_url) : asset('/img/plain_white.png');
-                },
-            );
-        }
-        return Attribute::make(
-            get: function () {
-                return $this->image_url ? asset('/storage/tshirt_images/'. $this->image_url) : asset('/img/plain_white.png');
-            },
-        );
-    }
 }

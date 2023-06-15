@@ -13,13 +13,22 @@ class ColorController extends Controller
 {
     public function index() : View
     {
-        $colors = Color::paginate(15);
-        return view('colors.index', compact('colors'));
+        if (Auth::user()->isAdmin()) {
+            $colors = Color::paginate(15);
+            return view('colors.index', compact('colors'));
+        } else {
+            return view('home')->with('alert-msg', 'Não tem permissões para ver cores!')->with('alert-type', 'danger');
+        }
     }
 
     public function create() : View
     {
-        return view('colors.create');
+        if (Auth::user()->isAdmin()) {
+            $color = new Color();
+            return view('colors.create', compact('color'));
+        } else {
+            return view('home')->with('alert-msg', 'Não tem permissões para criar cores!')->with('alert-type', 'danger');
+        }
     }
 
     public function show(Color $color) : View
@@ -44,7 +53,6 @@ class ColorController extends Controller
     {
         if (Auth::user()->isAdmin()) {
             $color->update($request->all());
-            $code = $color->code;
             return view('colors.edit', compact('color'));
         } else {
             return view('home')->with('alert-msg', 'Não tem permissões para editar cores!')->with('alert-type', 'danger');
@@ -63,6 +71,7 @@ class ColorController extends Controller
             $color->delete();
 
             return redirect()->route('colors.index');
+
         } catch (\Exception $error) {
             $url = route('colors.index');
             $htmlMessage = "Não foi possível apagar a cor <a href='$url'>#{$color->id}</a> <strong>\"{$color->name}\"</strong> porque ocorreu um erro!" . $error->getMessage();

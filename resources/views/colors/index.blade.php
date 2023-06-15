@@ -21,8 +21,8 @@
                                 <td>{{ $color->code }}</td>
                                 <td>{{ $color->name }}</td>
                                 <td>
-                                    <a href="{{ route('colors.show', $color->code) }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
-                                    <a href="{{ route('colors.edit', $color->code) }}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="{{ route('colors.show', $color->code) }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i> #TODO</a>
+                                    <a href="{{ route('colors.edit', $color->code) }}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i>#TODO</a>
                                     <form method="POST" action="{{ route('colors.destroy', $color->code) }}" class="d-inline">
                                         @csrf
                                         @method('DELETE')

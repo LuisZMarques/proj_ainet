@@ -7,6 +7,7 @@ use App\Models\Order;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -39,9 +40,25 @@ class OrderController extends Controller
         return view('orders.create');
     }
 
+    public function show(Order $order): View
+    {
+        return view('orders.show', compact('order'));
+    }
+
     public function edit(Order $order): View
     {
-        return view('orders.edit')->withOrder($order);
+        return view('orders.edit', compact('order'));
+    }
+
+    public function minhasEncomendas(Request $request): View
+    {
+        if(Auth::user()->isCustomer()) {
+            $customer = $request->user()->customer;
+            $encomendas = $customer->orders;
+            return view('orders.minhas', compact('encomendas', 'customer'));
+        }else{
+            return view('home')->with('alert-msg', 'Como é cliente não tem acesso a encomendas.')->with('alert-type', 'danger');
+        }
     }
 
     public function update(Request $request, Order $order): RedirectResponse
@@ -56,11 +73,10 @@ class OrderController extends Controller
         return redirect()->route('orders.index');
     }
 
-    public function minhasEncomendas(Request $request): View
+    public function destroy(Order $order): RedirectResponse
     {
-        $customer = $request->user()->customer;
-        $encomendas = $customer->orders;
-
-        return view('orders.minhas', compact('encomendas', 'customer'));
+        $order->delete();
+        return redirect()->route('orders.index');
     }
+
 }

@@ -10,17 +10,17 @@ class PriceController extends Controller
     public function index()
     {
         $price = Price::all()->first();
-        return view('prices.show', compact('price'));
+        return view('prices.index', compact('price'));
     }
 
-    public function create()
+    public function edit(Price $price)
     {
-        return view('prices.create');
+        return view('prices.edit', compact('price'));
     }
 
-    public function store(Request $request)
+    public function update(Request $request, Price $price)
     {
-        Price::create($request->all());
+        $price->update($request->all());
         return redirect('/precos');
     }
 }

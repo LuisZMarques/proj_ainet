@@ -102,7 +102,7 @@
                                 <a class="nav-link "
                                     href="{{ route('categories.index') }}">Categorias</a>
                                 <a class="nav-link "
-                                    href="{{ route('tshirt_images.index') }}">Imagens de T-Shirts</a>
+                                    href="{{ route('tshirt_images.index') }}">Imagens da Loja</a>
                                 <a class="nav-link "
                                     href="{{ route('prices.index') }}">Preços</a>
                                 <a class="nav-link "
@@ -151,7 +151,7 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">@yield('titulo', 'Imagine Shirt')</h1>
+                    <h1 class="mt-4 text-center" >@yield('titulo', 'Imagine Shirt')</h1>
                     @yield('subtitulo')
                     <div class="mt-4">
                         @yield('main')

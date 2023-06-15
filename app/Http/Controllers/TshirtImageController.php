@@ -6,61 +6,116 @@ use Illuminate\Http\Request;
 use App\Models\TshirtImage;
 use App\Models\Category;
 use App\Models\Customer;
+use App\Models\Color;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Pagination\Paginator;
  
 
 class TshirtImageController extends Controller
 {
     public function index(Request $request) : View
     {
-        $query = TshirtImage::query()->whereNull('customer_id');
-        $category = $request->input('category');
-        $search = $request->input('search');
+        if (Auth::user()->isAdmin()) {
+            $query = TshirtImage::query()->whereNull('customer_id');
+            $category = $request->input('category');
+            $search = $request->input('search');
 
-        if ($category) {
-            $query->where('category_id', $category);
+            if ($category) {
+                $query->where('category_id', $category);
+            }
+
+            if ($search) {
+                $query->where('name', 'LIKE', '%' . $search . '%');
+            }
+
+            $tshirtImages = $query->paginate(15);
+            $categories = Category::all();
+
+            return view('tshirt_images.index', compact('tshirtImages', 'categories'));
+        } else {
+            return view('home')->with('alert-msg', 'Não tem permissões para ver a lista de imagens das t-shirts!')->with('alert-type', 'danger');
         }
-
-        if ($search) {
-            $query->where('name', 'LIKE', '%' . $search . '%');
-        }
-
-        $tshirtImages = $query->paginate(15);
-        $categories = Category::all();
-
-        return view('tshirt_images.index', compact('tshirtImages', 'categories'));
     }
 
     public function show(TshirtImage $tshirtImage): View
     {
-        
-        if (Auth::user()->isAdmin()) {
+        if (Auth::user()->isAdmin() || Auth::user()->id == $tshirtImage->customer_id) {
+            $categories = Category::all();
             $customer = Customer::where('id', $tshirtImage->customer_id)->first();
-            return view('tshirt_images.show', compact('tshirtImage', 'customer'));
+            return view('tshirt_images.show', compact('tshirtImage', 'categories', 'customer'));
         } else {
             return view('home')->with('alert-msg', 'Não tem permissões para ver as imagens das t-shirts!')->with('alert-type', 'danger');
         }
     }
 
-    public function catalogo() : View
+    public function catalogo(Request $request) : View
     {
-        $customer_id = Auth::user()->id;
-        $tshirtImages = TshirtImage::whereNull('category_id')
-            ->orWhere('customer_id', $customer_id)
-            ->get();
-        return view('tshirt_images.catalogo', compact('tshirtImages'));
+        if(Auth::user()->isCustomer() || Auth::user()->isAdmin()){
+            $customer_id = Auth::user()->id;
+            
+            $category = $request->input('category');
+            $search = $request->input('search');
+
+            $query = TshirtImage::query()
+                ->where(function ($query) use ($customer_id) {
+                    $query->whereNull('customer_id')
+                        ->orWhere('customer_id', $customer_id);
+                });
+
+            if ($category) {
+                $query->where('category_id', $category);
+            }
+
+            if ($search) {
+                $query->where('name', 'LIKE', '%' . $search . '%');
+            }
+
+            $tshirtImages = $query->paginate(15);
+            $categories = Category::all();
+            $colors = Color::all();
+            return view('tshirt_images.catalogo', compact('tshirtImages', 'categories', 'colors'));
+        }else{
+            return view('home')->with('alert-msg', 'Não tem permissões para ver o catálogo de imagens das t-shirts!')->with('alert-type', 'danger');
+        }
     }
 
     public function create(): View
-    {
-        $categories = Category::all();
-        return view('tshirt_images.create', compact('categories'));
+    {   
+        if(Auth::user()->isCustomer()){
+
+                $categories = Category::all();
+                $tshirtImage = new TshirtImage();
+                $tshirtImage->category_id = null;
+                $tshirtImage->customer_id = Auth::user()->id;
+                $tshirtImage->image_url = "teste";
+
+            return view('tshirt_images.create', compact('tshirtImage' ,'categories'));
+        }elseif(Auth::user()->isAdmin()){
+
+                $categories = Category::all();
+                $tshirtImage = new TshirtImage();
+                $tshirtImage->customer_id = null;
+                $tshirtImage->image_url = "teste";
+            return view('tshirt_images.create', compact('tshirtImage' ,'categories'));
+        }else{
+            return view('home')->with('alert-msg', 'Não tem permissões para criar imagens de tshirts!')->with('alert-type', 'danger');
+        }
     }
 
+
+    public function edit(TshirtImage $tshirtImage): View
+    {
+        if(Auth::user()->isAdmin()){
+            $categories = Category::all();
+            return view('tshirt_images.edit', compact('tshirtImage', 'categories'));
+        }else{
+            return view('home')->with('alert-msg', 'Não tem permissões para editar imagens de tshirts!')->with('alert-type', 'danger');
+        }
+    }
 
     public function update(Request $request, TshirtImage $tshirtImage): View
     {   
@@ -75,10 +130,14 @@ class TshirtImageController extends Controller
 
     public function minhasTshirtImages(Request $request): View
     {
-        $customer = $request->user()->customer;
-        $tshirtImages = $customer->tshirt_images;
+        if(Auth::user()->isCustomer()) {
+            $customer = $request->user()->customer;
+            $tshirtImages = $customer->tshirt_images;
 
-        return view('tshirt_images.minhas', compact('tshirtImages', 'customer'));
+            return view('tshirt_images.minhas', compact('tshirtImages', 'customer'));
+        }else{
+            return view('home')->with('alert-msg', 'Não é cliente, logo não tem imagens de tshirts!')->with('alert-type', 'danger');
+        }
     }
 
     public function store(Request $request): RedirectResponse

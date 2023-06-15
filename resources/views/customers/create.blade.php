@@ -8,7 +8,8 @@
         @include('customers.shared.fields')
 
         <div>
-            <button type="submit" name="ok">Guardar Cliente</button>
+            <button type="submit" name="ok" class="btn btn-primary">Guardar Cliente</button>
+            <a href="{{ route('colors.index') }}" class="btn btn-secondary">Cancelar</a>
         </div>
     </form>
 @endsection

@@ -4,7 +4,6 @@
 
 @section('main')
     <div class="container">
-        <h2 class="text-center">Criar nova Encomenda</h2>
         <form method="POST" action="{{ route('orders.store') }}">
             @csrf
             @include('orders.shared.fields')

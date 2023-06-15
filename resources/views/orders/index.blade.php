@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-12 col-lg-8"> 
             <form action="{{ route('orders.index') }}" method="GET" class="search-bar mb-3 d-flex">
-                <select id="status-select" class="form-control" style="width:10%" name="status">
+                <select id="status-select" class="form-control" style="width:20%" name="status">
                     <option value="">Todos os Estados</option>
                     <option value="pending">Pendente</option>
                     <option value="paid">Paga</option>
@@ -35,8 +35,15 @@
                                 <td>{{ $order->date }}</td>
                                 <td>{{ $order->total_price }}</td>
                                 <td>
-                                    <a href="{{ route('orders.show', $order->id) }}">Ver</a>
-                                    <a href="{{ route('orders.edit', $order->id) }}">Editar</a>
+                                <div class="d-flex justify-content-center">
+                                    <a href="{{ route('orders.show', $order->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
+                                    <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-secondary btn-sm "><i class="fas fa-pencil-alt"></i></a>
+                                    <form method="POST" action="{{ route('orders.destroy', $order->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem a certeza?')"><i class='fas fa-trash'></i></button>
+                                    </form>
+                                </div>
                                 </td>
                             </tr>
                         @endforeach

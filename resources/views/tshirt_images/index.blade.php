@@ -7,7 +7,7 @@
         <div class="col-12 col-lg-8">
             <a href="{{ route('tshirt_images.create') }}" class="btn btn-primary mb-3">Nova Imagem de Tshirt</a>
             <form action="{{ route('tshirt_images.index') }}" method="GET" class="search-bar mb-3 d-flex">
-                <select id="status-select" class="form-control" style="width:10%" name="category">
+                <select id="status-select" class="form-control" style="width:20%" name="category">
                     <option value="">Todas as Categorias</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">
@@ -40,7 +40,7 @@
                                     <form method="POST" action="{{ route('tshirt_images.destroy', $tshirtImage->id) }}" style="display: inline-block;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esta imagem de T-Shirt?')"><i class="fas fa-trash"></i></button>
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esta imagem de T-Shirt?')"><i class="fas fa-trash"></i>#TODO</button>
                                     </form>
                                 </td>
                             </tr>

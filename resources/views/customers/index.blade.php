@@ -32,7 +32,7 @@
                                     <form method="POST" action="{{ route('customers.destroy', $customer->id) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm me-2 fas fa-trash" onclick="return confirm('Tem a certeza?')"><i class='fas fa-trash'></i></button>
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem a certeza?')"><i class='fas fa-trash'></i></button>
                                     </form>
                                 </div>
                             </td>
