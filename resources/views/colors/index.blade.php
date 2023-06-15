@@ -21,12 +21,12 @@
                                 <td>{{ $color->code }}</td>
                                 <td>{{ $color->name }}</td>
                                 <td>
-                                    <a href="{{ route('colors.show', $color->code) }}" class="btn btn-info btn-sm">Detalhes</a>
-                                    <a href="{{ route('colors.edit', $color->code) }}" class="btn btn-primary btn-sm">Editar</a>
+                                    <a href="{{ route('colors.show', $color->code) }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
+                                    <a href="{{ route('colors.edit', $color->code) }}" class="btn btn-primary btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                     <form method="POST" action="{{ route('colors.destroy', $color->code) }}" class="d-inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esta cor?')">Excluir</button>
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esta cor?')"><i class='fas fa-trash'></i></button>
                                     </form>
                                 </td>
                             </tr>

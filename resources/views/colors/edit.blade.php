@@ -3,10 +3,10 @@
 @section('titulo', 'Editar Cor')
 
 @section('main')
-    <form method="POST" action="{{ route('colors.update', $color->id) }}">
+    <form method="POST" action="{{ route('colors.edit', '$color') }}">
         @csrf
         @method('PUT')
-        @include('colors.shared.fields')
+        @include('colors.shared.fields', ['readonlyData' => false])
 
         <div>
             <button type="submit" name="ok" class="btn btn-primary">Guardar Alterações</button>
