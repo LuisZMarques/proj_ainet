@@ -7,6 +7,7 @@ use App\Models\TshirtImage;
 use App\Models\Category;
 use App\Models\Customer;
 use App\Models\Color;
+use App\Models\Price;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -77,7 +78,8 @@ class TshirtImageController extends Controller
             $tshirtImages = $query->paginate(15);
             $categories = Category::all();
             $colors = Color::all();
-            return view('tshirt_images.catalogo', compact('tshirtImages', 'categories', 'colors'));
+            $prices = Price::first();
+            return view('tshirt_images.catalogo', compact('tshirtImages', 'categories', 'colors', 'prices'));
         }else{
             return view('home')->with('alert-msg', 'Não tem permissões para ver o catálogo de imagens das t-shirts!')->with('alert-type', 'danger');
         }

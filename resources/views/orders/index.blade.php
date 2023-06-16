@@ -33,7 +33,7 @@
                                 <td>{{ $order->status }}</td>
                                 <td>{{ $order->customer->user->name }}</td>
                                 <td>{{ $order->date }}</td>
-                                <td>{{ $order->total_price }}</td>
+                                <td>{{ $order->total_price }}€</td>
                                 <td>
                                 <div class="d-flex justify-content-center">
                                     <a href="{{ route('orders.show', $order->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>

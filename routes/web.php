@@ -90,5 +90,17 @@ Route::post('/orderItems', [OrderItemController::class, 'store'])->name('orderIt
 Route::put('/orderItems/{orderItem}', [OrderItemController::class, 'update'])->name('orderItems.update');
 Route::delete('/orderItems/{orderItem}', [OrderItemController::class, 'destroy'])->name('orderItems.destroy');
 
+//Cart 
 
+Route::post('cart/{orderItem}', [CartController::class, 'addToCart'])
+ ->name('cart.add');
+// Remove a "orderItem"(Tshirt) from the cart:
+Route::delete('cart/{orderItem}', [CartController::class, 'removeFromCart'])
+->name('cart.remove');
+// Show the cart:
+Route::get('cart', [CartController::class, 'show'])->name('cart.show');
+// Confirm (store) the cart and save orderItem/tshirts registration on the database:
+Route::post('cart', [CartController::class, 'store'])->name('cart.store');
+// Clear the cart:
+Route::delete('cart', [CartController::class, 'destroy'])->name('cart.destroy');
 
